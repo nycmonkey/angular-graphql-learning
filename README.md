@@ -1,6 +1,5 @@
-# AngularApollo
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
+# angular-graphql-learning
+Toy app to learn something about front end development using Angular 6 and Apollo in front of existing GraphQL back-ends. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
 
 ## Development server
 
