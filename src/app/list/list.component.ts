@@ -5,18 +5,20 @@ import gql from 'graphql-tag';
 // import { map } from 'rxjs/operators';
 
 
-import { Course, Query } from '../types';
+import { Company, Person, Query } from '../types';
 
 
-const AllCoursesQuery = gql`
-  query allCourses {
-    allCourses {
+const CompaniesQuery = gql`
+  query companies {
+    companies {
       id
-      title
-      author
-      description
-      topic
-      url
+      name
+      homepage
+      logoUrl
+      executive {
+        name
+        photoURLs
+      }
     }
   }
 `;
@@ -26,13 +28,12 @@ const AllCoursesQuery = gql`
   // templateUrl: './list.component.html',
   styleUrls: ['./list.component.css'],
   template: `
-  <div *ngFor="let course of data | async | select: 'allCourses'">
-    <div class="card" style="width: 100%; margin-top: 10px">
+  <div class="card-columns" *ngFor="let company of data | async | select: 'companies'">
+    <div class="card">
+      <img class="card-img-top" style="max-width: 100px;" src="{{company.logoUrl}}" alt="{{company.name}} logo" />
       <div class="card-body">
-        <h5 class="card-title">{{course.title}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">by {{course.author}}</h6>
-        <p class="card-text">{{course.description}}</p>
-        <a href="{{course.url}}" class="card-link">Go to course ...</a>
+        <h5 class="card-title">{{company.name}}</h5>
+        <p class="card-text">{{company.executive && company.executive.name}}</p>
       </div>
     </div>
   </div>
@@ -43,6 +44,6 @@ export class ListComponent implements OnInit {
   constructor(private apollo: Apollo) { }
 
   ngOnInit() {
-    this.data = this.apollo.watchQuery({query: AllCoursesQuery}).valueChanges; 
+    this.data = this.apollo.watchQuery({query: CompaniesQuery}).valueChanges; 
   }
 }

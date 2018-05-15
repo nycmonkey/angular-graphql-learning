@@ -25,7 +25,8 @@ import { ListComponent } from './list/list.component';
 export class AppModule {
   constructor(apollo: Apollo, httpLink: HttpLink) {
     apollo.create({
-      link: httpLink.create({uri: 'https://vm8mjvrnv3.lp.gql.zone/graphql'}),
+      // link: httpLink.create({uri: 'https://vm8mjvrnv3.lp.gql.zone/graphql'}),
+      link: httpLink.create({uri: 'http://localhost:8081/query'}),
       cache: new InMemoryCache()
     });
   }
