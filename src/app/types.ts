@@ -1,4 +1,4 @@
-export type Company = {
+export interface Company {
     id: string;
     name: string;
     homepage: string;
@@ -6,15 +6,15 @@ export type Company = {
     topic: string;
     executive: Person;
     employees: Person[];
-  };
+}
 
-export type Query = {
+export interface Query {
     companies: Company[];
-};
+}
 
-export type Person = {
+export interface Person {
     id: string;
     name: string;
     employer: Company;
     photoURLs: string[];
-};
+}
